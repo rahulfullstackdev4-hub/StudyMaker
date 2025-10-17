@@ -1,0 +1,45 @@
+# node dependencies
+/node_modules
+
+# environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# build & logs
+/logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# database & temp
+/data/db
+/tmp
+*.sqlite
+*.db
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# production build
+/dist
+/build
+
+# coverage reports
+coverage/
+
+# uploads (optional - if storing user uploads locally)
+uploads/
