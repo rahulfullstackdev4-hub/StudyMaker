@@ -16,7 +16,19 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+// Configure CORS to allow requests from the frontend origin
+const corsOptions = {
+  origin: [
+    'https://study-maker-three.vercel.app', // Production frontend
+    'http://localhost:3000', // Local development frontend
+    'http://localhost:5173' // Vite default port
+  ],
+  credentials: true, // Allow credentials if needed
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ verify: (req, res, buf) => { req.rawBody = buf; } }));
 
 app.use("/api/auth", authRoutes);
