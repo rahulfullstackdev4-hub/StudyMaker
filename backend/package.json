@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.13.23",
-    "@google/genai": "^1.27.0",
+    "@google/genai": "^1.28.0",
     "axios": "^1.12.2",
     "cloudinary": "^2.7.0",
     "cors": "^2.8.5",

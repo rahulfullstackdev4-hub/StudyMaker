@@ -1,13 +1,11 @@
 require("dotenv").config();
-const { GoogleGenAI } = require("@google/genai");
+const { GoogleGenerativeAI } = require("@google/genai");
 const cloudinary = require("../config/cloudinary");
 const multer = require("multer");
 const pdfParse = require("pdf-parse");
 
 // ✅ Initialize Gemini client with your API key from .env
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Multer config for file uploads
 const storage = multer.memoryStorage();
@@ -92,14 +90,11 @@ const aiChat = async (req, res) => {
       }
     }
 
-    // ✅ Generate response using Gemini 2.5 Flash model
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: [{ role: "user", parts }],
-    });
-
-    // ✅ Extract text response
-    const text = response.output_text || response.text || "No response from AI.";
+    // ✅ Generate response using Gemini model
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const result = await model.generateContent(parts);
+    const response = await result.response;
+    const text = response.text();
 
     res.json({ response: text });
   } catch (error) {
