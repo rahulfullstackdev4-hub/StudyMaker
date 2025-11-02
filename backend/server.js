@@ -21,9 +21,10 @@ const corsOptions = {
   origin: [
     'https://study-maker-three.vercel.app', // Production frontend
     'http://localhost:3000', // Local development frontend
-    'http://localhost:5173' // Vite default port
+    'http://localhost:5173', // Vite default port
+    'http://localhost:5000' // Local backend port
   ],
-  credentials: true, // Allow credentials if needed
+  credentials: false, // Disable credentials to avoid preflight issues
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
