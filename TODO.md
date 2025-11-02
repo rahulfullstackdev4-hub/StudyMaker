@@ -1,13 +1,11 @@
-# TODO: Redesign Home.jsx for Pro-Level Modern Design
+# Deployment Readiness for Frontend on Vercel
 
-## Steps to Complete:
-- [ ] Remove circuit-like grid background from hero section
-- [ ] Enhance canvas particle animation (smoother connections, varied colors)
-- [ ] Improve button designs with advanced hover effects and gradients
-- [ ] Refine section layouts for better spacing, typography, and responsiveness
-- [ ] Add modern visual elements (enhanced shadows, improved gradients, refined color schemes)
-- [ ] Test responsiveness and animations in browser
+## Tasks
+- [x] Update `frontend/src/utils/api.js` to use `VITE_API_BASE_URL` environment variable for API base URL
+- [x] Create `frontend/vercel.json` for client-side routing (SPA rewrites)
 
-## Progress:
-- Started: [Date/Time]
-- Completed: [Date/Time]
+# Deployment Readiness for Backend on Render
+
+## Tasks
+- [x] Update `backend/package.json` to add Node.js engines field
+- [x] Create `backend/render.yaml` for Render deployment configuration
