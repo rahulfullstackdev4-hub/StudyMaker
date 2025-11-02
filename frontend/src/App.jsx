@@ -1,77 +1,104 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import AuthContext from "./context/AuthContext";
+import Home from "./pages/Home";
+import { SignedIn, SignedOut } from "@clerk/clerk-react";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Pages
-import Login from "./pages/auth/Login";
-import Signup from "./pages/auth/Signup";
+import { SignIn, SignUp } from "@clerk/clerk-react";
 import Dashboard from "./pages/Dashboard";
 import StudyPlan from "./pages/StudyPlan";
 import Notes from "./pages/Notes";
 import Flashcards from "./pages/Flashcards";
 import AIChat from "./pages/AIChat";
-
-// Protected Route Component
-const ProtectedRoute = ({ children }) => {
-  const { user } = useContext(AuthContext);
-  if (!user) {
-    return <Navigate to="/" />;
-  }
-  return children;
-};
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
     <AuthProvider>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+        <div className="App">
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} />
+            <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />
+            <Route path="/signup" element={<Navigate to="/sign-up" />} />
 
-          {/* Protected Routes */}
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/studyplan"
-            element={
-              <ProtectedRoute>
-                <StudyPlan />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/notes"
-            element={
-              <ProtectedRoute>
-                <Notes />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/flashcards"
-            element={
-              <ProtectedRoute>
-                <Flashcards />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/aichat"
-            element={
-              <ProtectedRoute>
-                <AIChat />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
+            {/* Protected Routes */}
+            <Route
+              path="/dashboard"
+              element={
+                <>
+                  <SignedIn>
+                    <Dashboard />
+                  </SignedIn>
+                  <SignedOut>
+                    <Navigate to="/sign-up" />
+                  </SignedOut>
+                </>
+              }
+            />
+            <Route
+              path="/studyplan"
+              element={
+                <>
+                  <SignedIn>
+                    <StudyPlan />
+                  </SignedIn>
+                  <SignedOut>
+                    <Navigate to="/sign-up" />
+                  </SignedOut>
+                </>
+              }
+            />
+            <Route
+              path="/notes"
+              element={
+                <>
+                  <SignedIn>
+                    <Notes />
+                  </SignedIn>
+                  <SignedOut>
+                    <Navigate to="/sign-up" />
+                  </SignedOut>
+                </>
+              }
+            />
+            <Route
+              path="/flashcards"
+              element={
+                <>
+                  <SignedIn>
+                    <Flashcards />
+                  </SignedIn>
+                  <SignedOut>
+                    <Navigate to="/sign-up" />
+                  </SignedOut>
+                </>
+              }
+            />
+            <Route
+              path="/aichat"
+              element={
+                <>
+                  <SignedIn>
+                    <AIChat />
+                  </SignedIn>
+                  <SignedOut>
+                    <Navigate to="/sign-up" />
+                  </SignedOut>
+                </>
+              }
+            />
+          </Routes>
+          <ToastContainer />
+        </div>
       </Router>
     </AuthProvider>
   );

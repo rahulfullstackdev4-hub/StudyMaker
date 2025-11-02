@@ -10,7 +10,7 @@ const api = axios.create({
   },
 });
 
-// Add token automatically
+// Add token automatically (legacy function for backward compatibility)
 export const setAuthToken = (token) => {
   if (token) {
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;

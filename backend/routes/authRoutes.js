@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { registerUser, authUser } = require("../controllers/authController");
+const { handleClerkWebhook } = require("../controllers/authController");
 
-router.post("/signup", registerUser);
-router.post("/login", authUser);
+// Webhook endpoint for Clerk events
+router.post("/webhook", express.raw({ type: 'application/json' }), handleClerkWebhook);
 
 module.exports = router;
