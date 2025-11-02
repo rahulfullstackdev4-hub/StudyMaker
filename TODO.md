@@ -6,6 +6,5 @@
 
 # Deployment Readiness for Backend on Render
 
-## Tasks
-- [x] Update `backend/package.json` to add Node.js engines field
-- [x] Create `backend/render.yaml` for Render deployment configuration
+May be deployment ready
+
