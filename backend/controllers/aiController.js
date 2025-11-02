@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { GoogleGenerativeAI } = require("@google/genai");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const cloudinary = require("../config/cloudinary");
 const multer = require("multer");
 const pdfParse = require("pdf-parse");
