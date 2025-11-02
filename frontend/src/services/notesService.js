@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/notes";
+const API_URL = import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api/notes";
 
 // Get all notes
 export const getNotes = async (token) => {

@@ -22,7 +22,7 @@ const AIChatBox = ({ onSend, disabled = false }) => {
 
         const token = localStorage.getItem('clerk-token');
         const uploadRes = await axios.post(
-          "http://localhost:5000/api/ai/upload",
+          `${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/ai/upload`,
           formData,
           {
             headers: {

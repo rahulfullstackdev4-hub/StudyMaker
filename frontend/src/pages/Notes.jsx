@@ -88,7 +88,7 @@ const Notes = () => {
     const fetchNotes = async () => {
       try {
         const token = await getClerkToken();
-        const res = await axios.get("http://localhost:5000/api/notes", {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/notes`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setNotes(res.data);
@@ -108,7 +108,7 @@ const Notes = () => {
       data.append("summary", formData.summary);
       if (formData.file) data.append("file", formData.file);
 
-      const res = await axios.post("http://localhost:5000/api/notes", data, {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/notes`, data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNotes([...notes, res.data]);
@@ -124,7 +124,7 @@ const Notes = () => {
   const handleDelete = async (id) => {
     try {
       const token = await getClerkToken();
-      await axios.delete(`http://localhost:5000/api/notes/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/notes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNotes(notes.filter(note => note._id !== id));

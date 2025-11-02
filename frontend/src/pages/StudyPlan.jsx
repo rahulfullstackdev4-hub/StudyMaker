@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import StudyPlanCard from "../components/StudyPlanCard";
 import AuthContext from "../context/AuthContext";
-import api from "../utils/api";
+import axios from "axios";
 import { notifySuccess, notifyError } from "../utils/notify";
 import { Plus, X, BookOpen, Target } from "lucide-react";
 
@@ -88,7 +88,9 @@ const StudyPlan = () => {
     if (user) {
       const fetchPlans = async () => {
         try {
-          const res = await api.get("/plan");
+          const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/plan`, {
+            headers: { Authorization: `Bearer ${await user.getToken()}` },
+          });
           setPlans(res.data);
         } catch (err) {
           console.error(err);
@@ -101,7 +103,9 @@ const StudyPlan = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/plan", formData);
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/plan`, formData, {
+        headers: { Authorization: `Bearer ${await user.getToken()}` },
+      });
       setPlans([...plans, res.data]);
       setFormData({ subject: "", topics: [""] });
       setShowForm(false);
@@ -134,7 +138,9 @@ const StudyPlan = () => {
 
   const handleDelete = async (id) => {
     try {
-      await api.delete(`/plan/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/plan/${id}`, {
+        headers: { Authorization: `Bearer ${await user.getToken()}` },
+      });
       setPlans(plans.filter(plan => plan._id !== id));
       notifySuccess("Study plan deleted successfully!");
     } catch (err) {

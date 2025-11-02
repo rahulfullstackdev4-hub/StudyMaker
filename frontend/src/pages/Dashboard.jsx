@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import AuthContext from "../context/AuthContext";
-import api from "../utils/api";
+import axios from "axios";
 import { TrendingUp, Target, Clock, BookOpen, FileText, Zap } from "lucide-react";
 
 const Dashboard = () => {
@@ -85,7 +85,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        const res = await api.get("/dashboard");
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/dashboard`, {
+          headers: { Authorization: `Bearer ${await user.getToken()}` },
+        });
         console.log("Dashboard data:", res.data);
         setStats(res.data.stats);
         setRecentNotes(res.data.recentNotes);

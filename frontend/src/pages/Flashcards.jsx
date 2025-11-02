@@ -88,7 +88,7 @@ const Flashcards = () => {
     const fetchFlashcards = async () => {
       try {
         const token = await getClerkToken();
-        const res = await axios.get("http://localhost:5000/api/flashcards", {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/flashcards`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setFlashcardSets(res.data);
@@ -103,7 +103,7 @@ const Flashcards = () => {
     e.preventDefault();
     try {
       const token = await getClerkToken();
-      const res = await axios.post("http://localhost:5000/api/flashcards", formData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/flashcards`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFlashcardSets([...flashcardSets, res.data]);
@@ -139,7 +139,7 @@ const Flashcards = () => {
   const handleDelete = async (id) => {
     try {
       const token = await getClerkToken();
-      await axios.delete(`http://localhost:5000/api/flashcards/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/flashcards/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFlashcardSets(flashcardSets.filter(set => set._id !== id));

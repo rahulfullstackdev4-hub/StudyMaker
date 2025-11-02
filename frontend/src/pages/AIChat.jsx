@@ -106,7 +106,7 @@ const AIChat = () => {
         payload.fileType = fileData.fileType;
       }
       const res = await axios.post(
-        "http://localhost:5000/api/ai/chat",
+        `${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/ai/chat`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );

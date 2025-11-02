@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/ai";
+const API_URL = import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api/ai";
 
 // Send a prompt to AI assistant
 export const sendAIChat = async (prompt, token) => {

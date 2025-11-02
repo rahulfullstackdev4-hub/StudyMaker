@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/flashcards";
+const API_URL = import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api/flashcards";
 
 // Get all flashcards
 export const getFlashcards = async (token) => {
