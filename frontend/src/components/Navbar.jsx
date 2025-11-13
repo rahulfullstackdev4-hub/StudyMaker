@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  // Scroll shadow effect
+  
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -30,7 +30,7 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-[1600px] mx-auto px-8 py-6 flex justify-between items-center">
-        {/* Logo */}
+        
         <Link
           to="/"
           className="flex items-center gap-4 group transition-all duration-700"
@@ -47,7 +47,7 @@ const Navbar = () => {
           </span>
         </Link>
 
-        {/* Desktop Nav Links */}
+        
         <div className="hidden lg:flex items-center space-x-12">
           {links.map((link) => (
             <Link
@@ -87,7 +87,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
+        
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="lg:hidden text-[#9ECFD4] hover:text-white transition-all duration-500 hover:drop-shadow-[0_0_15px_rgba(158,207,212,0.5)]"
@@ -96,7 +96,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      
       <div
         className={`lg:hidden fixed top-0 left-0 w-full h-screen bg-black/98 backdrop-blur-xl transform transition-all duration-700 ${
           isOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"

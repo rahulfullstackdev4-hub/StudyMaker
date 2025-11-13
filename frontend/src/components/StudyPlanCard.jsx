@@ -6,7 +6,7 @@ const StudyPlanCard = ({ subject, topics, completed, total, onDelete }) => {
   return (
     <div className="group bg-black border border-white/10 hover:border-[#9ECFD4] transition-all duration-300">
       <div className="p-8">
-        {/* Header */}
+    
         <div className="flex justify-between items-start gap-4 mb-8">
           <div className="flex items-start gap-4 flex-1 min-w-0">
             <div className="w-12 h-12 bg-[#9ECFD4]/10 border border-[#9ECFD4]/20 flex items-center justify-center flex-shrink-0">
@@ -29,7 +29,7 @@ const StudyPlanCard = ({ subject, topics, completed, total, onDelete }) => {
           </button>
         </div>
 
-        {/* Topics Section */}
+        
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
             <Target className="w-5 h-5 text-[#9ECFD4]" />
@@ -47,13 +47,13 @@ const StudyPlanCard = ({ subject, topics, completed, total, onDelete }) => {
           </div>
         </div>
 
-        {/* Progress Bar */}
+        
         <div>
           <ProgressBar completed={completed} total={total} />
         </div>
       </div>
 
-      {/* Bottom accent line */}
+      
       <div className="h-px bg-gradient-to-r from-transparent via-[#9ECFD4] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
     </div>
   );

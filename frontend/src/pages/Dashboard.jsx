@@ -4,9 +4,10 @@ import Sidebar from "../components/Sidebar";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
 import { TrendingUp, Target, Clock, BookOpen, FileText, Zap } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user, getClerkToken } = useContext(AuthContext);
   const [stats, setStats] = useState({ goalsCompleted: 0, studyHours: 0, pendingFlashcards: 0 });
   const [recentNotes, setRecentNotes] = useState([]);
   const [quote, setQuote] = useState("");
@@ -25,7 +26,7 @@ const Dashboard = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Minimal geometric background animation
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -85,8 +86,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
+        const token = await getClerkToken();
         const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/dashboard`, {
-          headers: { Authorization: `Bearer ${await user.getToken()}` },
+          headers: { Authorization: `Bearer ${token}` },
         });
         console.log("Dashboard data:", res.data);
         setStats(res.data.stats);
@@ -97,14 +99,14 @@ const Dashboard = () => {
       }
     };
     if (user) fetchDashboard();
-  }, [user]);
+  }, [user, getClerkToken]);
 
   return (
     <div className="relative flex min-h-screen bg-black overflow-x-hidden    ">
-      {/* Animated Canvas Background */}
+      
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />
 
-      {/* Subtle gradient overlay */}
+      
       <div
         className="fixed inset-0 pointer-events-none z-10 transition-all duration-700"
         style={{
@@ -118,7 +120,7 @@ const Dashboard = () => {
         <Navbar />
         
         <div className="max-w-7xl mx-auto">
-          {/* Header Section */}
+          
           <div className="mb-16 mt-8">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-1 h-12 bg-[#9ECFD4]"></div>
@@ -132,9 +134,9 @@ const Dashboard = () => {
             </p>
           </div>
 
-          {/* Stats Grid */}
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            {/* Goals Card */}
+        
             <div className="group relative bg-black border border-white/10 hover:border-[#9ECFD4] transition-all duration-300">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#9ECFD4] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="p-8">
@@ -150,7 +152,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Study Hours Card */}
+            
             <div className="group relative bg-black border border-white/10 hover:border-[#9ECFD4] transition-all duration-300">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#9ECFD4] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="p-8">
@@ -166,7 +168,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Flashcards Card */}
+            
             <div className="group relative bg-black border border-white/10 hover:border-[#9ECFD4] transition-all duration-300">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#9ECFD4] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="p-8">
@@ -183,7 +185,37 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Recent Notes Section */}
+          
+          <div className="mb-16">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-1 h-8 bg-[#9ECFD4]"></div>
+              <h2 className="text-3xl font-bold text-white">Progress Overview</h2>
+            </div>
+            <div className="bg-black border border-white/10 p-8">
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={[
+                  { name: 'Goals Completed', value: stats.goalsCompleted, color: '#9ECFD4' },
+                  { name: 'Study Hours', value: stats.studyHours, color: '#9ECFD4' },
+                  { name: 'Pending Cards', value: stats.pendingFlashcards, color: '#9ECFD4' }
+                ]}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+                  <XAxis dataKey="name" stroke="#9ECFD4" />
+                  <YAxis stroke="#9ECFD4" />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#000',
+                      border: '1px solid #9ECFD4',
+                      borderRadius: '8px',
+                      color: '#fff'
+                    }}
+                  />
+                  <Bar dataKey="value" fill="#9ECFD4" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          
           <div className="mb-16">
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-4">
@@ -227,7 +259,7 @@ const Dashboard = () => {
             )}
           </div>
 
-          {/* Motivational Quote Section */}
+          
           <div className="relative bg-black border border-white/10 overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#9ECFD4]/5 blur-3xl"></div>
             <div className="relative p-12">

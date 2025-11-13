@@ -9,7 +9,7 @@ const getDashboard = async (req, res) => {
     const studyPlans = await StudyPlan.find({ userId });
     const goalsCompleted = studyPlans.reduce((sum, plan) => sum + plan.completed, 0);
 
-    // Calculate study hours based on completed topics
+    
     let studyHours = 0;
     for (const plan of studyPlans) {
       if (plan.topics && Array.isArray(plan.topics)) {
@@ -23,7 +23,7 @@ const getDashboard = async (req, res) => {
 
     const recentNotes = await Notes.find({ userId }).sort({ createdAt: -1 }).limit(5);
 
-    // Fetch the number of pending flashcards
+    
     const pendingFlashcards = await Flashcard.countDocuments({ userId, completed: false });
 
     const quotes = [

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { Upload, Send, X } from "lucide-react";
 
-const AIChatBox = ({ onSend, disabled = false }) => {
+const AIChatBox = ({ onSend, disabled = false, getToken }) => {
   const [prompt, setPrompt] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -20,7 +20,7 @@ const AIChatBox = ({ onSend, disabled = false }) => {
         const formData = new FormData();
         formData.append('file', selectedFile);
 
-        const token = localStorage.getItem('clerk-token');
+        const token = getToken ? await getToken() : localStorage.getItem('clerk-token');
         const uploadRes = await axios.post(
           `${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/ai/upload`,
           formData,
@@ -83,7 +83,7 @@ const AIChatBox = ({ onSend, disabled = false }) => {
 
   return (
     <div className="flex flex-col space-y-4">
-      {/* File Upload Section */}
+      
       <div className="flex items-center gap-4">
         <input
           ref={fileInputRef}
@@ -116,7 +116,7 @@ const AIChatBox = ({ onSend, disabled = false }) => {
         )}
       </div>
 
-      {/* Text Input Section */}
+      
       <div className="flex items-end gap-4">
         <div className="flex-1 relative">
           <textarea
@@ -144,7 +144,7 @@ const AIChatBox = ({ onSend, disabled = false }) => {
         </div>
       </div>
 
-      {/* Helper Text */}
+    
       <div className="flex items-center justify-between text-xs text-gray-500">
         <span>Press Enter to send, Shift+Enter for new line</span>
         <span>Max file size: 10MB</span>

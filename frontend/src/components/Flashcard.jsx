@@ -9,7 +9,7 @@ const Flashcard = ({ question, answer }) => {
       className="group bg-black border border-white/10 hover:border-[#9ECFD4] p-8 cursor-pointer transition-all duration-300 min-h-[280px] flex flex-col"
       onClick={() => setIsFlipped(!isFlipped)}
     >
-      {/* Header Badge */}
+      
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2 px-4 py-2 bg-[#9ECFD4]/10 border border-[#9ECFD4]/20">
           {isFlipped ? (
@@ -29,14 +29,14 @@ const Flashcard = ({ question, answer }) => {
         </div>
       </div>
 
-      {/* Content */}
+      
       <div className="flex-1 flex items-center justify-center">
         <p className="text-lg text-white leading-relaxed text-center group-hover:text-[#9ECFD4] transition-colors duration-300">
           {isFlipped ? answer : question}
         </p>
       </div>
 
-      {/* Footer Hint */}
+    
       <div className="mt-6 pt-4 border-t border-white/10">
         <p className="text-xs text-gray-500 text-center tracking-wider uppercase">
           Click to {isFlipped ? 'see question' : 'reveal answer'}

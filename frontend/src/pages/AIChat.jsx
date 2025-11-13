@@ -155,9 +155,9 @@ const AIChat = () => {
             </p>
           </div>
 
-          {/* Chat Container */}
+          
           <div className="bg-black border border-white/10 overflow-hidden hover:border-[#9ECFD4] transition-all duration-300">
-            {/* Messages Area */}
+            
             <div className="h-[500px] overflow-y-auto p-8 space-y-6 custom-scrollbar">
               {messages.length === 0 && (
                 <div className="flex items-center justify-center h-full">
@@ -232,9 +232,9 @@ const AIChat = () => {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input Area */}
+            
             <div className="border-t border-white/10 p-6 bg-black">
-              <AIChatBox onSend={handleSend} disabled={isLoading} />
+              <AIChatBox onSend={handleSend} disabled={isLoading} getToken={getClerkToken} />
             </div>
           </div>
 
@@ -273,7 +273,7 @@ const AIChat = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 6px;
         }

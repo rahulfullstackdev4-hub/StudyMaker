@@ -1,6 +1,6 @@
 const User = require("../models/User");
 
-// Webhook handler for Clerk user creation
+
 const handleClerkWebhook = async (req, res) => {
   try {
     const { type, data } = req.body;

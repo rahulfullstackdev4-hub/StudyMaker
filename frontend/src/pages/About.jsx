@@ -26,7 +26,7 @@ const About = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Minimal geometric background animation
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -99,10 +99,10 @@ const About = () => {
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
       
-      {/* Animated Canvas */}
+      
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />
 
-      {/* Subtle gradient overlay */}
+      
       <div 
         className="fixed inset-0 pointer-events-none z-10 transition-all duration-700"
         style={{
@@ -110,7 +110,7 @@ const About = () => {
         }}
       />
 
-      {/* Hero Section */}
+      
       <section className="relative min-h-screen flex items-center justify-center px-8 py-32 z-20">
         <div className="relative z-30 max-w-6xl mx-auto text-center">
           <div className="mb-8">
@@ -146,7 +146,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      
       <section className="relative py-32 px-8 z-20">
         <div className="max-w-7xl mx-auto">
           <div className="mb-24">
@@ -194,7 +194,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
+    
       <section className="relative py-32 px-8 z-20">
         <div className="max-w-7xl mx-auto">
           <div className="mb-24">
@@ -239,7 +239,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      
       <section className="relative py-32 px-8 z-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6">
@@ -264,7 +264,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      
       <section className="relative py-32 px-8 z-20">
         <div className="relative max-w-4xl mx-auto text-center">
           <h2 className="text-6xl md:text-7xl font-bold mb-8 tracking-tight leading-tight">
@@ -295,7 +295,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Footer */}
+      
       <footer className="relative py-16 px-8 border-t border-white/10 z-20">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">

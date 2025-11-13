@@ -16,15 +16,15 @@ connectDB();
 
 const app = express();
 
-// Configure CORS to allow requests from the frontend origin
+
 const corsOptions = {
   origin: [
-    'https://study-maker-three.vercel.app', // Production frontend
-    'http://localhost:3000', // Local development frontend
-    'http://localhost:5173', // Vite default port
-    'http://localhost:5000' // Local backend port
+    'https://study-maker-three.vercel.app', 
+    'http://localhost:3000', 
+    'http://localhost:5173', 
+    'http://localhost:5000' 
   ],
-  credentials: false, // Disable credentials to avoid preflight issues
+  credentials: false, 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
@@ -39,7 +39,7 @@ app.use("/api/notes", notesRoutes);
 app.use("/api/flashcards", flashcardRoutes);
 app.use("/api/ai", aiRoutes);
 
-// Error Handling
+
 app.use(notFound);
 app.use(errorHandler);
 

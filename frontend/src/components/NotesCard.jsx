@@ -5,7 +5,7 @@ const NotesCard = ({ title, summary, fileUrl, onDelete }) => {
   return (
     <div className="group bg-black border border-white/10 hover:border-[#9ECFD4] transition-all duration-300">
       <div className="p-8">
-        {/* Header */}
+      
         <div className="flex justify-between items-start gap-4 mb-6">
           <div className="flex items-start gap-4 flex-1 min-w-0">
             <div className="w-12 h-12 bg-[#9ECFD4]/10 border border-[#9ECFD4]/20 flex items-center justify-center flex-shrink-0">
@@ -25,12 +25,12 @@ const NotesCard = ({ title, summary, fileUrl, onDelete }) => {
           </button>
         </div>
 
-        {/* Summary */}
+      
         <p className="text-gray-400 leading-relaxed mb-6 group-hover:text-gray-300 transition-colors duration-300">
           {summary}
         </p>
 
-        {/* File Link */}
+        
         {fileUrl && (
           <a
             href={fileUrl}
@@ -44,7 +44,7 @@ const NotesCard = ({ title, summary, fileUrl, onDelete }) => {
         )}
       </div>
 
-      {/* Bottom accent line */}
+    
       <div className="h-px bg-gradient-to-r from-transparent via-[#9ECFD4] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
     </div>
   );

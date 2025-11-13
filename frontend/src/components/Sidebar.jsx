@@ -17,7 +17,7 @@ const Sidebar = () => {
 
   return (
     <div className="w-64 h-screen bg-black border-r border-white/10 flex flex-col mt-[13rem]">
-      {/* Logo Section */}
+      
       <div className="p-6 border-b border-white/10">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-[#9ECFD4]/10 border border-[#9ECFD4] flex items-center justify-center">
@@ -30,7 +30,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Navigation Menu */}
+      
       <nav className="flex-1 p-4">
         <ul className="space-y-2">
           {menuItems.map((item) => {
@@ -49,7 +49,7 @@ const Sidebar = () => {
                     }
                   `}
                 >
-                  {/* Active indicator */}
+                  
                   {active && (
                     <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#9ECFD4]"></div>
                   )}
@@ -67,7 +67,7 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      {/* Footer Section */}
+    
       <div className="p-6 border-t border-white/10">
         <div className="bg-[#9ECFD4]/5 border border-[#9ECFD4]/20 p-4">
           <p className="text-[#9ECFD4] text-xs font-medium uppercase tracking-wider mb-2">

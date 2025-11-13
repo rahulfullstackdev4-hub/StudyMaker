@@ -27,7 +27,7 @@ const Notes = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Minimal geometric background animation
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -137,10 +137,10 @@ const Notes = () => {
 
   return (
     <div className="relative flex min-h-screen bg-black overflow-x-hidden">
-      {/* Animated Canvas Background */}
+      
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />
 
-      {/* Subtle gradient overlay */}
+      
       <div
         className="fixed inset-0 pointer-events-none z-10 transition-all duration-700"
         style={{
@@ -154,7 +154,7 @@ const Notes = () => {
         <Navbar />
         
         <div className="max-w-5xl mx-auto">
-          {/* Header Section */}
+          
           <div className="mb-16 mt-8">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-1 h-12 bg-[#9ECFD4]"></div>
@@ -168,7 +168,7 @@ const Notes = () => {
             </p>
           </div>
 
-          {/* Add Note Button */}
+        
           <div className="mb-12">
             <button
               onClick={() => setShowForm(!showForm)}
@@ -195,7 +195,7 @@ const Notes = () => {
             </button>
           </div>
 
-          {/* Form Section */}
+        
           {showForm && (
             <div className="bg-black border border-white/10 mb-12 hover:border-[#9ECFD4] transition-all duration-300">
               <div className="p-8">
@@ -207,7 +207,7 @@ const Notes = () => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
-                  {/* Title Input */}
+                  
                   <div>
                     <label className="block text-gray-400 font-medium mb-3 text-sm tracking-wider uppercase">
                       Title
@@ -222,7 +222,7 @@ const Notes = () => {
                     />
                   </div>
 
-                  {/* Summary Textarea */}
+              
                   <div>
                     <label className="block text-gray-400 font-medium mb-3 text-sm tracking-wider uppercase">
                       Summary
@@ -237,7 +237,7 @@ const Notes = () => {
                     />
                   </div>
 
-                  {/* File Upload */}
+                  
                   <div>
                     <label className="block text-gray-400 font-medium mb-3 text-sm tracking-wider uppercase">
                       Attachment (Optional)
@@ -257,7 +257,7 @@ const Notes = () => {
                     )}
                   </div>
 
-                  {/* Submit Button */}
+                
                   <button
                     type="submit"
                     className="w-full px-8 py-5 bg-transparent border border-[#9ECFD4] text-[#9ECFD4] hover:bg-[#9ECFD4] hover:text-black transition-all duration-300 font-medium tracking-wider uppercase flex items-center justify-center gap-3"
@@ -270,7 +270,7 @@ const Notes = () => {
             </div>
           )}
 
-          {/* Notes List */}
+        
           {notes.length > 0 ? (
             <div className="grid gap-6">
               {notes.map((note) => (

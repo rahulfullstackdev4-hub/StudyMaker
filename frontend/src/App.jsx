@@ -6,8 +6,9 @@ import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Pages
-import { SignIn, SignUp } from "@clerk/clerk-react";
+
+import { SignIn } from "@clerk/clerk-react";
+import Signup from "./pages/auth/Signup";
 import Dashboard from "./pages/Dashboard";
 import StudyPlan from "./pages/StudyPlan";
 import Notes from "./pages/Notes";
@@ -22,15 +23,15 @@ function App() {
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <div className="App">
           <Routes>
-            {/* Public Routes */}
+            
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} />
-            <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />
+            <Route path="/sign-up/*" element={<Signup />} />
             <Route path="/signup" element={<Navigate to="/sign-up" />} />
 
-            {/* Protected Routes */}
+            
             <Route
               path="/dashboard"
               element={

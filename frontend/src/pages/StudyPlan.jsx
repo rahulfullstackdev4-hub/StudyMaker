@@ -8,7 +8,7 @@ import { notifySuccess, notifyError } from "../utils/notify";
 import { Plus, X, BookOpen, Target } from "lucide-react";
 
 const StudyPlan = () => {
-  const { user } = useContext(AuthContext);
+  const { user, getClerkToken } = useContext(AuthContext);
   const [plans, setPlans] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({ subject: "", topics: [""] });
@@ -27,7 +27,7 @@ const StudyPlan = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Minimal geometric background animation
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -88,8 +88,9 @@ const StudyPlan = () => {
     if (user) {
       const fetchPlans = async () => {
         try {
+          const token = await getClerkToken();
           const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/plan`, {
-            headers: { Authorization: `Bearer ${await user.getToken()}` },
+            headers: { Authorization: `Bearer ${token}` },
           });
           setPlans(res.data);
         } catch (err) {
@@ -98,13 +99,14 @@ const StudyPlan = () => {
       };
       fetchPlans();
     }
-  }, [user]);
+  }, [user, getClerkToken]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = await getClerkToken();
       const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/plan`, formData, {
-        headers: { Authorization: `Bearer ${await user.getToken()}` },
+        headers: { Authorization: `Bearer ${token}` },
       });
       setPlans([...plans, res.data]);
       setFormData({ subject: "", topics: [""] });
@@ -138,8 +140,9 @@ const StudyPlan = () => {
 
   const handleDelete = async (id) => {
     try {
+      const token = await getClerkToken();
       await axios.delete(`${import.meta.env.VITE_API_BASE_URL || "https://studymaker.onrender.com/api"}/plan/${id}`, {
-        headers: { Authorization: `Bearer ${await user.getToken()}` },
+        headers: { Authorization: `Bearer ${token}` },
       });
       setPlans(plans.filter(plan => plan._id !== id));
       notifySuccess("Study plan deleted successfully!");
@@ -151,10 +154,10 @@ const StudyPlan = () => {
 
   return (
     <div className="relative flex min-h-screen bg-black overflow-x-hidden">
-      {/* Animated Canvas Background */}
+      
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />
 
-      {/* Subtle gradient overlay */}
+      
       <div
         className="fixed inset-0 pointer-events-none z-10 transition-all duration-700"
         style={{
@@ -168,7 +171,7 @@ const StudyPlan = () => {
         <Navbar />
         
         <div className="max-w-5xl mx-auto">
-          {/* Header Section */}
+        
           <div className="mb-16 mt-8">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-1 h-12 bg-[#9ECFD4]"></div>
@@ -182,7 +185,7 @@ const StudyPlan = () => {
             </p>
           </div>
 
-          {/* Create Plan Button */}
+          
           <div className="mb-12">
             <button
               onClick={() => setShowForm(!showForm)}
@@ -209,7 +212,7 @@ const StudyPlan = () => {
             </button>
           </div>
 
-          {/* Form Section */}
+          
           {showForm && (
             <div className="bg-black border border-white/10 mb-12 hover:border-[#9ECFD4] transition-all duration-300">
               <div className="p-8">
@@ -221,7 +224,7 @@ const StudyPlan = () => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
-                  {/* Subject Input */}
+                  
                   <div>
                     <label className="block text-gray-400 font-medium mb-3 text-sm tracking-wider uppercase">
                       Subject
@@ -236,7 +239,7 @@ const StudyPlan = () => {
                     />
                   </div>
 
-                  {/* Topics Input */}
+                  
                   <div>
                     <label className="block text-gray-400 font-medium mb-3 text-sm tracking-wider uppercase">
                       Topics
@@ -275,7 +278,7 @@ const StudyPlan = () => {
                     </button>
                   </div>
 
-                  {/* Submit Button */}
+                
                   <button
                     type="submit"
                     className="w-full px-8 py-5 bg-transparent border border-[#9ECFD4] text-[#9ECFD4] hover:bg-[#9ECFD4] hover:text-black transition-all duration-300 font-medium tracking-wider uppercase flex items-center justify-center gap-3"
@@ -288,7 +291,7 @@ const StudyPlan = () => {
             </div>
           )}
 
-          {/* Plans List */}
+          
           {plans.length > 0 ? (
             <div className="space-y-6">
               {plans.map((plan) => (

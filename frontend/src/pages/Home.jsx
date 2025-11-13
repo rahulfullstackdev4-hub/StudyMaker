@@ -33,7 +33,7 @@ const Home = () => {
     };
   }, []);
 
-  // Enhanced Animated Canvas Background
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -45,7 +45,7 @@ const Home = () => {
     const particles = [];
     const particleCount = 80;
 
-    // Create particles with varied properties
+    
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -54,7 +54,7 @@ const Home = () => {
         vy: (Math.random() - 0.5) * 0.3,
         size: Math.random() * 3 + 1,
         opacity: Math.random() * 0.8 + 0.2,
-        hue: Math.random() * 60 + 160, // Blue to cyan range
+        hue: Math.random() * 60 + 160, 
         pulse: Math.random() * Math.PI * 2
       });
     }
@@ -63,19 +63,19 @@ const Home = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((p, i) => {
-        // Update position
+        
         p.x += p.vx;
         p.y += p.vy;
         p.pulse += 0.02;
 
-        // Bounce off edges
+        
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
-        // Dynamic size based on pulse
+        
         const currentSize = p.size * (1 + Math.sin(p.pulse) * 0.3);
 
-        // Draw particle with glow
+        
         ctx.save();
         ctx.globalAlpha = p.opacity;
         ctx.shadowColor = `hsl(${p.hue}, 70%, 60%)`;
@@ -87,7 +87,7 @@ const Home = () => {
         ctx.fill();
         ctx.restore();
 
-        // Draw connections to nearby particles
+        
         particles.forEach((p2, j) => {
           if (i !== j) {
             const dx = p.x - p2.x;
@@ -141,11 +141,11 @@ const Home = () => {
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Animated Canvas */}
+    
       <Navbar/>
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />
 
-      {/* Dynamic Gradient Overlay */}
+      
       <div 
         className="fixed inset-0 pointer-events-none z-10 transition-opacity duration-1000"
         style={{
@@ -154,9 +154,9 @@ const Home = () => {
         }}
       />
 
-      {/* Hero Section */}
+      
       <section className="relative min-h-screen flex items-center justify-center px-8 py-32 z-20">
-        {/* Removed circuit-like grid background */}
+        
 
         <div className="relative z-30 max-w-8xl mx-auto text-center">
           <div
@@ -199,7 +199,7 @@ const Home = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-8 opacity-0 animate-[fadeIn_1s_ease-out_0.8s_forwards]"
             style={{ animationFillMode: 'forwards' }}
           >
-            <button className="group relative bg-gradient-to-r from-[#9ECFD4] to-[#9ECFD4]/80 text-black px-32 py-8 text-[10px] font-black tracking-[0.3em] hover:from-white hover:to-[#9ECFD4]/90 transition-all duration-700 overflow-hidden shadow-2xl shadow-[#9ECFD4]/30 hover:shadow-[#9ECFD4]/50">
+            <button onClick={() => window.location.href = '/sign-up'} className="group relative bg-gradient-to-r from-[#9ECFD4] to-[#9ECFD4]/80 text-black px-32 py-8 text-[10px] font-black tracking-[0.3em] hover:from-white hover:to-[#9ECFD4]/90 transition-all duration-700 overflow-hidden shadow-2xl shadow-[#9ECFD4]/30 hover:shadow-[#9ECFD4]/50">
               <span className="relative z-10 flex items-center gap-4">
                 LAUNCH PLATFORM
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-3 transition-transform duration-500" strokeWidth={3} />
@@ -221,7 +221,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+    
       <section className="relative py-40 px-8 z-20">
         <div className="max-w-[1600px] mx-auto">
           <div className="mb-32 text-center">
@@ -237,47 +237,50 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[2px] bg-gradient-to-br from-[#9ECFD4]/5 to-transparent p-[2px]">
-            {features.map(({ icon: Icon, title, desc, gradient }, idx) => (
-              <div
-                key={title}
-                className="group relative bg-black p-20 hover:bg-gradient-to-br hover:from-[#9ECFD4]/[0.03] hover:to-transparent transition-all duration-1000 overflow-hidden"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-1000`} />
+            {features.map(({ icon, title, desc, gradient }, idx) => {
+              const Icon = icon;
+              return (
+                <div
+                  key={title}
+                  className="group relative bg-black p-20 hover:bg-gradient-to-br hover:from-[#9ECFD4]/[0.03] hover:to-transparent transition-all duration-1000 overflow-hidden"
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-1000`} />
 
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between mb-16">
-                    <div className="relative">
-                      <div className="w-16 h-16 border border-[#9ECFD4]/20 flex items-center justify-center group-hover:border-[#9ECFD4] group-hover:bg-[#9ECFD4] transition-all duration-700">
-                        <Icon className="w-7 h-7 text-[#9ECFD4] group-hover:text-black transition-colors duration-700" strokeWidth={1.5} />
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-16">
+                      <div className="relative">
+                        <div className="w-16 h-16 border border-[#9ECFD4]/20 flex items-center justify-center group-hover:border-[#9ECFD4] group-hover:bg-[#9ECFD4] transition-all duration-700">
+                          <Icon className="w-7 h-7 text-[#9ECFD4] group-hover:text-black transition-colors duration-700" strokeWidth={1.5} />
+                        </div>
+                        <div className="absolute -bottom-2 -right-2 w-4 h-4 border-r border-b border-[#9ECFD4]/20 group-hover:border-[#9ECFD4] transition-colors duration-700" />
                       </div>
-                      <div className="absolute -bottom-2 -right-2 w-4 h-4 border-r border-b border-[#9ECFD4]/20 group-hover:border-[#9ECFD4] transition-colors duration-700" />
+                      <div className="text-[100px] font-black text-white/[0.015] group-hover:text-[#9ECFD4]/[0.05] leading-none transition-colors duration-1000">
+                        {String(idx + 1).padStart(2, '0')}
+                      </div>
                     </div>
-                    <div className="text-[100px] font-black text-white/[0.015] group-hover:text-[#9ECFD4]/[0.05] leading-none transition-colors duration-1000">
-                      {String(idx + 1).padStart(2, '0')}
+
+                    <h3 className="text-3xl font-bold text-white mb-4 tracking-tight group-hover:text-[#9ECFD4] transition-colors duration-700">
+                      {title}
+                    </h3>
+                    <p className="text-white/30 text-xs tracking-wider leading-relaxed mb-6 group-hover:text-white/50 transition-colors duration-700">
+                      {desc}
+                    </p>
+
+                    <div className="flex items-center gap-2 text-[#9ECFD4]/50 group-hover:text-[#9ECFD4] text-[8px] font-bold tracking-[0.3em] group-hover:gap-4 transition-all duration-700">
+                      EXPLORE
+                      <ArrowRight className="w-3 h-3" strokeWidth={2.5} />
                     </div>
                   </div>
 
-                  <h3 className="text-3xl font-bold text-white mb-4 tracking-tight group-hover:text-[#9ECFD4] transition-colors duration-700">
-                    {title}
-                  </h3>
-                  <p className="text-white/30 text-xs tracking-wider leading-relaxed mb-6 group-hover:text-white/50 transition-colors duration-700">
-                    {desc}
-                  </p>
-
-                  <div className="flex items-center gap-2 text-[#9ECFD4]/50 group-hover:text-[#9ECFD4] text-[8px] font-bold tracking-[0.3em] group-hover:gap-4 transition-all duration-700">
-                    EXPLORE
-                    <ArrowRight className="w-3 h-3" strokeWidth={2.5} />
-                  </div>
+                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#9ECFD4] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-1000" />
                 </div>
-
-                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#9ECFD4] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-1000" />
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
+  
       <section className="relative py-40 px-8 z-20">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-[#9ECFD4]/[0.01] to-black" />
         
@@ -293,38 +296,41 @@ const Home = () => {
           </div>
 
           <div className="space-y-[2px] bg-gradient-to-b from-[#9ECFD4]/5 to-transparent p-[2px]">
-            {benefits.map(({ icon: Icon, title, desc }, idx) => (
-              <div key={title} className="group bg-black p-20 hover:bg-gradient-to-r hover:from-[#9ECFD4]/[0.03] hover:to-transparent transition-all duration-1000">
-                <div className="flex flex-col lg:flex-row items-start gap-16">
-                  <div className="flex items-center gap-12 flex-shrink-0">
-                    <div className="relative">
-                      <div className="w-24 h-24 bg-[#9ECFD4] flex items-center justify-center group-hover:bg-white transition-colors duration-700">
-                        <Icon className="w-11 h-11 text-black" strokeWidth={2} />
+            {benefits.map(({ icon, title, desc }, idx) => {
+              const BenefitIcon = icon;
+              return (
+                <div key={title} className="group bg-black p-20 hover:bg-gradient-to-r hover:from-[#9ECFD4]/[0.03] hover:to-transparent transition-all duration-1000">
+                  <div className="flex flex-col lg:flex-row items-start gap-16">
+                    <div className="flex items-center gap-12 flex-shrink-0">
+                      <div className="relative">
+                        <div className="w-24 h-24 bg-[#9ECFD4] flex items-center justify-center group-hover:bg-white transition-colors duration-700">
+                          <BenefitIcon className="w-11 h-11 text-black" strokeWidth={2} />
+                        </div>
+                        <div className="absolute -top-3 -right-3 w-6 h-6 border-t border-r border-[#9ECFD4]/30 group-hover:border-[#9ECFD4] transition-colors duration-700" />
+                        <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b border-l border-[#9ECFD4]/30 group-hover:border-[#9ECFD4] transition-colors duration-700" />
                       </div>
-                      <div className="absolute -top-3 -right-3 w-6 h-6 border-t border-r border-[#9ECFD4]/30 group-hover:border-[#9ECFD4] transition-colors duration-700" />
-                      <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b border-l border-[#9ECFD4]/30 group-hover:border-[#9ECFD4] transition-colors duration-700" />
+                      <div className="text-[120px] font-black text-[#9ECFD4]/5 group-hover:text-[#9ECFD4]/10 leading-none transition-colors duration-1000">
+                        {String(idx + 1).padStart(2, '0')}
+                      </div>
                     </div>
-                    <div className="text-[120px] font-black text-[#9ECFD4]/5 group-hover:text-[#9ECFD4]/10 leading-none transition-colors duration-1000">
-                      {String(idx + 1).padStart(2, '0')}
-                    </div>
-                  </div>
 
-                  <div className="flex-1">
-                    <h3 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight group-hover:text-[#9ECFD4] transition-colors duration-700">
-                      {title}
-                    </h3>
-                    <p className="text-white/40 text-sm leading-loose tracking-wide max-w-3xl group-hover:text-white/60 transition-colors duration-700">
-                      {desc}
-                    </p>
+                    <div className="flex-1">
+                      <h3 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight group-hover:text-[#9ECFD4] transition-colors duration-700">
+                        {title}
+                      </h3>
+                      <p className="text-white/40 text-sm leading-loose tracking-wide max-w-3xl group-hover:text-white/60 transition-colors duration-700">
+                        {desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
+      
       <section className="relative py-40 px-8 z-20">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid md:grid-cols-3 gap-[2px] bg-gradient-to-r from-transparent via-[#9ECFD4]/5 to-transparent p-[2px]">
@@ -354,7 +360,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      
       <section className="relative py-48 px-8 z-20">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(158,207,212,0.08)_0%,transparent_70%)]" />
         
@@ -388,7 +394,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Footer */}
+      
       <footer className="relative py-24 px-8 border-t border-white/[0.02] z-20">
         <div className="max-w-[1600px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-12">
@@ -415,7 +421,7 @@ const Home = () => {
         </div>
       </footer>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fadeIn {
           from { opacity: 1; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }

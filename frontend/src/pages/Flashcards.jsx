@@ -27,7 +27,7 @@ const Flashcards = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Minimal geometric background animation
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -152,10 +152,10 @@ const Flashcards = () => {
 
   return (
     <div className="relative flex min-h-screen bg-black overflow-x-hidden">
-      {/* Animated Canvas Background */}
+      
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />
 
-      {/* Subtle gradient overlay */}
+      
       <div
         className="fixed inset-0 pointer-events-none z-10 transition-all duration-700"
         style={{
@@ -169,7 +169,7 @@ const Flashcards = () => {
         <Navbar />
         
         <div className="max-w-6xl mx-auto">
-          {/* Header Section */}
+        
           <div className="mb-16 mt-8">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-1 h-12 bg-[#9ECFD4]"></div>
@@ -183,7 +183,7 @@ const Flashcards = () => {
             </p>
           </div>
 
-          {/* Create Set Button */}
+          
           <div className="mb-12">
             <button
               onClick={() => setShowForm(!showForm)}
@@ -210,7 +210,7 @@ const Flashcards = () => {
             </button>
           </div>
 
-          {/* Form Section */}
+          
           {showForm && (
             <div className="bg-black border border-white/10 mb-12 hover:border-[#9ECFD4] transition-all duration-300">
               <div className="p-8">
@@ -222,7 +222,7 @@ const Flashcards = () => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
-                  {/* Subject Input */}
+                  
                   <div>
                     <label className="block text-gray-400 font-medium mb-3 text-sm tracking-wider uppercase">
                       Subject
@@ -237,7 +237,7 @@ const Flashcards = () => {
                     />
                   </div>
 
-                  {/* Cards Input */}
+                  
                   <div>
                     <label className="block text-gray-400 font-medium mb-3 text-sm tracking-wider uppercase">
                       Cards
@@ -291,7 +291,7 @@ const Flashcards = () => {
                     </button>
                   </div>
 
-                  {/* Submit Button */}
+                  
                   <button
                     type="submit"
                     className="w-full px-8 py-5 bg-transparent border border-[#9ECFD4] text-[#9ECFD4] hover:bg-[#9ECFD4] hover:text-black transition-all duration-300 font-medium tracking-wider uppercase flex items-center justify-center gap-3"
@@ -304,7 +304,7 @@ const Flashcards = () => {
             </div>
           )}
 
-          {/* Flashcard Sets List */}
+          
           {flashcardSets.length > 0 ? (
             <div className="space-y-8">
               {flashcardSets.map((set) => (

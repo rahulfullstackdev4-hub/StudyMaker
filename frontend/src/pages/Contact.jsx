@@ -18,7 +18,7 @@ const Contact = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Minimal geometric background animation
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -79,10 +79,10 @@ const Contact = () => {
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
       
-      {/* Animated Canvas */}
+      
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />
 
-      {/* Subtle gradient overlay */}
+      
       <div
         className="fixed inset-0 pointer-events-none z-10 transition-all duration-700"
         style={{
@@ -90,7 +90,7 @@ const Contact = () => {
         }}
       />
 
-      {/* Hero Section */}
+    
       <header className="relative min-h-screen flex items-center justify-center px-8 py-32 z-20">
         <div className="relative max-w-6xl mx-auto text-center">
           <div className="mb-8">
@@ -126,7 +126,7 @@ const Contact = () => {
         </div>
       </header>
 
-      {/* Contact Form and Info */}
+    
       <main className="relative py-32 px-8 z-20">
         <div className="max-w-7xl mx-auto">
           <div className="mb-24">
@@ -143,7 +143,7 @@ const Contact = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Contact Form */}
+            
             <div className="bg-black border border-white/10 hover:border-[#9ECFD4] transition-all duration-300">
               <div className="p-8">
                 <div className="flex items-center gap-4 mb-8">
@@ -195,7 +195,7 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Contact Info */}
+          
             <div className="space-y-6">
               <div className="bg-black border border-white/10 hover:border-[#9ECFD4] transition-all duration-300">
                 <div className="p-8">
@@ -264,7 +264,7 @@ const Contact = () => {
         </div>
       </main>
 
-      {/* Footer */}
+    
       <footer className="relative py-16 px-8 border-t border-white/10 z-20">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
